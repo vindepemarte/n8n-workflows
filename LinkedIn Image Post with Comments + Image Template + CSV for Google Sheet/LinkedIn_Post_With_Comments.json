@@ -174,59 +174,6 @@
       }
     },
     {
-      "parameters": {
-        "method": "POST",
-        "url": "=https://api.linkedin.com/v2/socialActions/{{ $('Create a post').item.json.urn }}/comments",
-        "authentication": "predefinedCredentialType",
-        "nodeCredentialType": "linkedInOAuth2Api",
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "={\n   \"actor\":\"urn:li:person:{{ $('Get User Info').item.json.body.sub }}\",\n   \"message\":{\n      \"text\":\"{{ $json.output }}\"\n }\n}",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
-      "position": [
-        3872,
-        176
-      ],
-      "id": "89aacdf6-2b26-4930-8f50-f6f7c3b8081a",
-      "name": "Comment Prompt 1",
-      "credentials": {
-        "linkedInOAuth2Api": {
-          "id": "VMvO4siHzlffzP3W",
-          "name": "LinkedIn account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "fieldToSplitOut": "output",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.splitOut",
-      "typeVersion": 1,
-      "position": [
-        3424,
-        128
-      ],
-      "id": "d2414894-81b4-4ffa-89f0-1a97f38bb844",
-      "name": "Split Out"
-    },
-    {
-      "parameters": {
-        "options": {}
-      },
-      "type": "n8n-nodes-base.splitInBatches",
-      "typeVersion": 3,
-      "position": [
-        3648,
-        128
-      ],
-      "id": "2898d4c0-579d-455b-aba6-d48dd5f08de5",
-      "name": "Loop Over Items"
-    },
-    {
       "parameters": {},
       "type": "n8n-nodes-base.noOp",
       "typeVersion": 1,
@@ -236,52 +183,6 @@
       ],
       "id": "439bd45a-12d2-48be-827c-163ba3d0bdd8",
       "name": "No Operation, do nothing"
-    },
-    {
-      "parameters": {
-        "text": "={{ $('AI Agent').item.json.output.prompts }} Extract each prompt by itself like \"1. Platform Analysis > Identify top marketing channels for my business. What platforms vibe with my target audience and market trends?\" and so on. Do not include special characters like '*' , '\\\"' etc, make it exactly structured like my example.",
-        "attributes": {
-          "attributes": [
-            {
-              "name": "={{ $('AI Agent').item.json.output.prompts[0].title }} = {{ $('AI Agent').item.json.output.prompts[0].text }}",
-              "description": "prompt 1"
-            },
-            {
-              "name": "={{ $('AI Agent').item.json.output.prompts[1].title }} = {{ $('AI Agent').item.json.output.prompts[1].text }}",
-              "description": "prompt 2"
-            },
-            {
-              "name": "={{ $('AI Agent').item.json.output.prompts[2].title }} = {{ $('AI Agent').item.json.output.prompts[2].text }}",
-              "description": "prompt 3"
-            },
-            {
-              "name": "={{ $('AI Agent').item.json.output.prompts[3].title }} = {{ $('AI Agent').item.json.output.prompts[3].text }}",
-              "description": "prompt 4"
-            },
-            {
-              "name": "={{ $('AI Agent').item.json.output.prompts[4].title }} = {{ $('AI Agent').item.json.output.prompts[4].text }}",
-              "description": "prompt 5"
-            },
-            {
-              "name": "={{ $('AI Agent').item.json.output.prompts[5].title }} = {{ $('AI Agent').item.json.output.prompts[5].text }}",
-              "description": "prompt 6"
-            },
-            {
-              "name": "={{ $('AI Agent').item.json.output.prompts[6].title }} = {{ $('AI Agent').item.json.output.prompts[6].text }}",
-              "description": "prompt 7"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "type": "@n8n/n8n-nodes-langchain.informationExtractor",
-      "typeVersion": 1.2,
-      "position": [
-        3072,
-        128
-      ],
-      "id": "944f9f6f-c617-445a-84e9-f1287ba8f65b",
-      "name": "Information Extractor1"
     },
     {
       "parameters": {},
@@ -331,85 +232,6 @@
       ],
       "id": "19d704c0-ba30-4101-ad55-98a49022e8db",
       "name": "Get Idea",
-      "credentials": {
-        "googleSheetsOAuth2Api": {
-          "id": "Ss6URB41yXjqqwIV",
-          "name": "Google Sheets account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "operation": "update",
-        "documentId": {
-          "__rl": true,
-          "value": "1mpT1qt33xj2HNUvYcJMjpYDYzP8FYzoUcnPsi_Y-pLw",
-          "mode": "list",
-          "cachedResultName": "LinkedIn 7 Amazing Prompts Ideas",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1mpT1qt33xj2HNUvYcJMjpYDYzP8FYzoUcnPsi_Y-pLw/edit?usp=drivesdk"
-        },
-        "sheetName": {
-          "__rl": true,
-          "value": "gid=0",
-          "mode": "list",
-          "cachedResultName": "Ideas",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1mpT1qt33xj2HNUvYcJMjpYDYzP8FYzoUcnPsi_Y-pLw/edit#gid=0"
-        },
-        "columns": {
-          "mappingMode": "defineBelow",
-          "value": {
-            "row_number": "={{ $('Get Idea').item.json.row_number }}",
-            "Status": "Done"
-          },
-          "matchingColumns": [
-            "row_number"
-          ],
-          "schema": [
-            {
-              "id": "Topic Idea",
-              "displayName": "Topic Idea",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": true
-            },
-            {
-              "id": "Status",
-              "displayName": "Status",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "row_number",
-              "displayName": "row_number",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "number",
-              "canBeUsedToMatch": true,
-              "readOnly": true,
-              "removed": false
-            }
-          ],
-          "attemptToConvertTypes": false,
-          "convertFieldsToString": false
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.googleSheets",
-      "typeVersion": 4.7,
-      "position": [
-        3872,
-        -16
-      ],
-      "id": "30817db2-86f9-4d12-bfa9-ce61fa3f94ae",
-      "name": "Idea Done",
-      "executeOnce": true,
       "credentials": {
         "googleSheetsOAuth2Api": {
           "id": "Ss6URB41yXjqqwIV",
@@ -512,26 +334,6 @@
     },
     {
       "parameters": {
-        "model": "google/gemini-2.5-flash",
-        "options": {}
-      },
-      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
-      "typeVersion": 1,
-      "position": [
-        3144,
-        352
-      ],
-      "id": "8df88247-7245-4241-9395-a0450222bec2",
-      "name": "Flash-Extract",
-      "credentials": {
-        "openRouterApi": {
-          "id": "lLONo2Kzh3cTHHkb",
-          "name": "OpenRouter account"
-        }
-      }
-    },
-    {
-      "parameters": {
         "url": "https://api.linkedin.com/v2/userinfo",
         "authentication": "predefinedCredentialType",
         "nodeCredentialType": "linkedInOAuth2Api",
@@ -572,6 +374,174 @@
       "typeVersion": 1,
       "id": "087b738e-973b-433b-9f1d-792a22d98889",
       "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.linkedin.com/v2/socialActions/{{ $('Create a post').item.json.urn }}/comments",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "linkedInOAuth2Api",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n   \"actor\":\"urn:li:person:{{ $('HTTP Request2').item.json.body.sub }}\",\n   \"message\":{\n      \"text\":\"{{ $json.name }}\"\n }\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        3872,
+        176
+      ],
+      "id": "469596c7-2827-44b6-9f31-a993395aff0c",
+      "name": "Comment Prompt 1",
+      "credentials": {
+        "linkedInOAuth2Api": {
+          "id": "VMvO4siHzlffzP3W",
+          "name": "LinkedIn account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "output.prompts",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        3424,
+        128
+      ],
+      "id": "cf059f85-0636-4f05-8bfe-85f42c535cac",
+      "name": "Split Out"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        3648,
+        128
+      ],
+      "id": "eb9a954c-8f04-46f7-ba95-26377de16ef6",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "text": "={{ $('AI Agent').item.json.output.prompts }} Extract each prompt individually in the format: '1. Title > Text', '2. Title > Text', and so on, based on the order of prompts in the input. Ensure the output matches this structure exactly: 'Number. Title > Text'. Remove any special characters like '*', '\\', '\"', or others from the title and text, and ensure no extra spaces or formatting issues. For example: '1. Platform Analysis > Identify top marketing channels for my business. What platforms vibe with my target audience and market trends?'",
+        "schemaType": "fromJson",
+        "jsonSchemaExample": "{\n    \"prompts\": [\n      {\n        \"name\": \"1. Platform Analysis > Identify top marketing channels for my business. What platforms vibe with my target audience and market trends?\"\n      },\n      {\n        \"name\": \"2. Content Strategy > Suggest a content plan for social media growth.\"\n      },\n      {\n        \"name\": \"3. Budget Planning > Estimate costs for a digital marketing campaign.\"\n      },\n      {\n        \"name\": \"4. Audience Targeting > Define my ideal customer profile based on demographics and behavior.\"\n      },\n      {\n        \"name\": \"5. Social Media Ads > Design a strategy for effective ad campaigns on Instagram and Facebook.\"\n      },\n      {\n        \"name\": \"6. SEO Optimization > Recommend keywords to improve my website's search engine ranking.\"\n      },\n      {\n        \"name\": \"7. Email Marketing > Create a plan for a successful email drip campaign.\"\n      }\n    ]\n}",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.informationExtractor",
+      "typeVersion": 1.2,
+      "position": [
+        3072,
+        128
+      ],
+      "id": "f4668dc0-eb85-4a2a-b633-cb0d8606406f",
+      "name": "Information Extractor1"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1mpT1qt33xj2HNUvYcJMjpYDYzP8FYzoUcnPsi_Y-pLw",
+          "mode": "list",
+          "cachedResultName": "LinkedIn 7 Amazing Prompts Ideas",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1mpT1qt33xj2HNUvYcJMjpYDYzP8FYzoUcnPsi_Y-pLw/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Ideas",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1mpT1qt33xj2HNUvYcJMjpYDYzP8FYzoUcnPsi_Y-pLw/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "row_number": "={{ $('Get Idea').item.json.row_number }}",
+            "Status": "Done"
+          },
+          "matchingColumns": [
+            "row_number"
+          ],
+          "schema": [
+            {
+              "id": "Topic Idea",
+              "displayName": "Topic Idea",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        3872,
+        -16
+      ],
+      "id": "596faf4f-3c39-4d10-911a-7a09610a398e",
+      "name": "Idea Done",
+      "executeOnce": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "Ss6URB41yXjqqwIV",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "google/gemini-2.5-flash",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        3072,
+        336
+      ],
+      "id": "f4ffe17b-278b-4fc3-9b7f-ae3da19490ff",
+      "name": "Flash-Extract",
+      "credentials": {
+        "openRouterApi": {
+          "id": "lLONo2Kzh3cTHHkb",
+          "name": "OpenRouter account"
+        }
+      }
     }
   ],
   "pinData": {},
@@ -642,57 +612,6 @@
         ]
       ]
     },
-    "Split Out": {
-      "main": [
-        [
-          {
-            "node": "Loop Over Items",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Loop Over Items": {
-      "main": [
-        [
-          {
-            "node": "Idea Done",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "Comment Prompt 1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Comment Prompt 1": {
-      "main": [
-        [
-          {
-            "node": "Loop Over Items",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Information Extractor1": {
-      "main": [
-        [
-          {
-            "node": "Split Out",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Wait": {
       "main": [
         [
@@ -709,17 +628,6 @@
         [
           {
             "node": "Rules",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Idea Done": {
-      "main": [
-        [
-          {
-            "node": "Send a message",
             "type": "main",
             "index": 0
           }
@@ -770,6 +678,68 @@
         ]
       ]
     },
+    "Get User Info": {
+      "main": [
+        [
+          {
+            "node": "Get Idea",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Comment Prompt 1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [
+          {
+            "node": "Idea Done",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Comment Prompt 1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Information Extractor1": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
     "Flash-Extract": {
       "ai_languageModel": [
         [
@@ -781,11 +751,11 @@
         ]
       ]
     },
-    "Get User Info": {
+    "Idea Done": {
       "main": [
         [
           {
-            "node": "Get Idea",
+            "node": "Send a message",
             "type": "main",
             "index": 0
           }
@@ -797,7 +767,7 @@
   "settings": {
     "executionOrder": "v1"
   },
-  "versionId": "6bb8decf-dc98-4475-9603-3a25467bfa0b",
+  "versionId": "1ed1c12c-7948-4eec-8cc7-81728f052a82",
   "meta": {
     "instanceId": "dbaf995a552ad456c5cce79204c975c0e35798cd443fe4b878db57c81c75aac9"
   },
