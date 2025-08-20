@@ -430,22 +430,6 @@
     },
     {
       "parameters": {
-        "text": "={{ $('AI Agent').item.json.output.prompts }} Extract each prompt individually in the format: '1. Title > Text', '2. Title > Text', and so on, based on the order of prompts in the input. Ensure the output matches this structure exactly: 'Number. Title > Text'. Remove any special characters like '*', '\\', '\"', or others from the title and text, and ensure no extra spaces or formatting issues. For example: '1. Platform Analysis > Identify top marketing channels for my business. What platforms vibe with my target audience and market trends?'",
-        "schemaType": "fromJson",
-        "jsonSchemaExample": "{\n    \"prompts\": [\n      {\n        \"name\": \"1. Platform Analysis > Identify top marketing channels for my business. What platforms vibe with my target audience and market trends?\"\n      },\n      {\n        \"name\": \"2. Content Strategy > Suggest a content plan for social media growth.\"\n      },\n      {\n        \"name\": \"3. Budget Planning > Estimate costs for a digital marketing campaign.\"\n      },\n      {\n        \"name\": \"4. Audience Targeting > Define my ideal customer profile based on demographics and behavior.\"\n      },\n      {\n        \"name\": \"5. Social Media Ads > Design a strategy for effective ad campaigns on Instagram and Facebook.\"\n      },\n      {\n        \"name\": \"6. SEO Optimization > Recommend keywords to improve my website's search engine ranking.\"\n      },\n      {\n        \"name\": \"7. Email Marketing > Create a plan for a successful email drip campaign.\"\n      }\n    ]\n}",
-        "options": {}
-      },
-      "type": "@n8n/n8n-nodes-langchain.informationExtractor",
-      "typeVersion": 1.2,
-      "position": [
-        3072,
-        128
-      ],
-      "id": "f4668dc0-eb85-4a2a-b633-cb0d8606406f",
-      "name": "Information Extractor1"
-    },
-    {
-      "parameters": {
         "operation": "update",
         "documentId": {
           "__rl": true,
@@ -525,17 +509,33 @@
     },
     {
       "parameters": {
+        "text": "={{ $('AI Agent').item.json.output.prompts }} \n\nExtract each prompt individually in the format: \n'1. Title > Text', '2. Title > Text', and so on, based on the order of prompts in the input. \n\nEnsure the output matches this structure exactly: 'Number. Title > Text'. \n\nRemove any special characters like '*', '\\', '\"', or others from the title and text, and ensure no extra spaces or formatting issues. \n\nFor example: '1. Platform Analysis > Identify top marketing channels for my business. What platforms vibe with my target audience and market trends?'\n\nJSON example: \n\n{\n    \"prompts\": [\n      {\n        \"name\": \"1. Platform Analysis > Identify top marketing channels for my business. What platforms vibe with my target audience and market trends?\"\n      },\n      {\n        \"name\": \"2. Content Strategy > Suggest a content plan for social media growth.\"\n      },\n      {\n        \"name\": \"3. Budget Planning > Estimate costs for a digital marketing campaign.\"\n      },\n      {\n        \"name\": \"4. Audience Targeting > Define my ideal customer profile based on demographics and behavior.\"\n      },\n      {\n        \"name\": \"5. Social Media Ads > Design a strategy for effective ad campaigns on Instagram and Facebook.\"\n      },\n      {\n        \"name\": \"6. SEO Optimization > Recommend keywords to improve my website's search engine ranking.\"\n      },\n      {\n        \"name\": \"7. Email Marketing > Create a plan for a successful email drip campaign.\"\n      }\n    ]\n}",
+        "schemaType": "fromJson",
+        "jsonSchemaExample": "{\n    \"prompts\": [\n      {\n        \"name\": \"1. Platform Analysis > Identify top marketing channels for my business. What platforms vibe with my target audience and market trends?\"\n      },\n      {\n        \"name\": \"2. Content Strategy > Suggest a content plan for social media growth.\"\n      },\n      {\n        \"name\": \"3. Budget Planning > Estimate costs for a digital marketing campaign.\"\n      },\n      {\n        \"name\": \"4. Audience Targeting > Define my ideal customer profile based on demographics and behavior.\"\n      },\n      {\n        \"name\": \"5. Social Media Ads > Design a strategy for effective ad campaigns on Instagram and Facebook.\"\n      },\n      {\n        \"name\": \"6. SEO Optimization > Recommend keywords to improve my website's search engine ranking.\"\n      },\n      {\n        \"name\": \"7. Email Marketing > Create a plan for a successful email drip campaign.\"\n      }\n    ]\n}",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.informationExtractor",
+      "typeVersion": 1.2,
+      "position": [
+        3088,
+        128
+      ],
+      "id": "52cb175a-24a0-4bf8-afa6-81847590c44b",
+      "name": "Information Extractor"
+    },
+    {
+      "parameters": {
         "model": "google/gemini-2.5-flash",
         "options": {}
       },
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
       "typeVersion": 1,
       "position": [
-        3072,
-        336
+        3088,
+        304
       ],
-      "id": "f4ffe17b-278b-4fc3-9b7f-ae3da19490ff",
-      "name": "Flash-Extract",
+      "id": "c4d19281-b5e6-47d8-9de5-143cfce63d24",
+      "name": "Flash-Extract1",
       "credentials": {
         "openRouterApi": {
           "id": "lLONo2Kzh3cTHHkb",
@@ -616,7 +616,7 @@
       "main": [
         [
           {
-            "node": "Information Extractor1",
+            "node": "Information Extractor",
             "type": "main",
             "index": 0
           }
@@ -729,33 +729,33 @@
         ]
       ]
     },
-    "Information Extractor1": {
+    "Idea Done": {
       "main": [
         [
           {
-            "node": "Split Out",
+            "node": "Send a message",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Flash-Extract": {
+    "Flash-Extract1": {
       "ai_languageModel": [
         [
           {
-            "node": "Information Extractor1",
+            "node": "Information Extractor",
             "type": "ai_languageModel",
             "index": 0
           }
         ]
       ]
     },
-    "Idea Done": {
+    "Information Extractor": {
       "main": [
         [
           {
-            "node": "Send a message",
+            "node": "Split Out",
             "type": "main",
             "index": 0
           }
@@ -767,7 +767,7 @@
   "settings": {
     "executionOrder": "v1"
   },
-  "versionId": "1ed1c12c-7948-4eec-8cc7-81728f052a82",
+  "versionId": "9e3d0bdf-b1c4-4ad0-8ea1-416549e9370c",
   "meta": {
     "instanceId": "dbaf995a552ad456c5cce79204c975c0e35798cd443fe4b878db57c81c75aac9"
   },
