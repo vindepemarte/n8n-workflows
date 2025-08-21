@@ -1,0 +1,855 @@
+{
+  "name": "Discord AI World BOTS",
+  "nodes": [
+    {
+      "parameters": {
+        "resource": "message",
+        "guildId": {
+          "__rl": true,
+          "value": "1407626125026525295",
+          "mode": "list",
+          "cachedResultName": "AI World - The Future is Here",
+          "cachedResultUrl": "https://discord.com/channels/1407626125026525295"
+        },
+        "channelId": {
+          "__rl": true,
+          "value": "1407627765552906291",
+          "mode": "list",
+          "cachedResultName": "🥵-ai-hot-daily-news",
+          "cachedResultUrl": "https://discord.com/channels/1407626125026525295/1407627765552906291"
+        },
+        "content": "=Hey folks, this is the latest news about AI, brought by your friendly Bot!\n\nEveryday at 8 AM I will post! Stay tuned. You might as well activate notifications for this channel!\n",
+        "options": {
+          "tts": true
+        },
+        "embeds": {
+          "values": [
+            {
+              "description": "={{ $json.output.description }}",
+              "author": "Vindepemarte",
+              "color": "#00E5FF",
+              "timestamp": "={{ $now.format('yyyy-MM-dd') }}",
+              "title": "The Latest News v1 Bot",
+              "url": "={{ $json.output.url }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.discord",
+      "typeVersion": 2,
+      "position": [
+        480,
+        0
+      ],
+      "id": "8dfa3f4d-e7fe-44b2-80d2-a44896f5b482",
+      "name": "Send ai-hot-daily-news",
+      "webhookId": "58b3d88f-0599-4da7-be5a-ad1230d77ed7",
+      "credentials": {
+        "discordBotApi": {
+          "id": "bSlWBL8zVmmaohcP",
+          "name": "AI World"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1BaekBWTUhSuO2S7kP4i78_YFgApYPH7ASr1r1jFjU-w",
+          "mode": "list",
+          "cachedResultName": "AI World Bot",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1BaekBWTUhSuO2S7kP4i78_YFgApYPH7ASr1r1jFjU-w/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "ai-hot-daily",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1BaekBWTUhSuO2S7kP4i78_YFgApYPH7ASr1r1jFjU-w/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "URL": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('URL', ``, 'string') }}",
+            "SumDescription": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('SumDescription', ``, 'string') }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "URL",
+              "displayName": "URL",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "SumDescription",
+              "displayName": "SumDescription",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        -80,
+        208
+      ],
+      "id": "fa4d5988-1699-46a2-8e40-97b19b40893e",
+      "name": "GSheetAdd",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "Ss6URB41yXjqqwIV",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1BaekBWTUhSuO2S7kP4i78_YFgApYPH7ASr1r1jFjU-w",
+          "mode": "list",
+          "cachedResultName": "AI World Bot",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1BaekBWTUhSuO2S7kP4i78_YFgApYPH7ASr1r1jFjU-w/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "ai-hot-daily",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1BaekBWTUhSuO2S7kP4i78_YFgApYPH7ASr1r1jFjU-w/edit#gid=0"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "URL",
+              "lookupValue": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('values0_Value', ``, 'string') }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        48,
+        208
+      ],
+      "id": "a481d216-36a3-4135-8bf0-83111b16bf0f",
+      "name": "GSheetCheck",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "Ss6URB41yXjqqwIV",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "toolDescription": "=Use this tool to browse the web so you can find the latest videos posted by a channel as today is {{ $now.format('yyyy-MM-dd') }}",
+        "url": "https://www.googleapis.com/customsearch/v1",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "key",
+              "value": "AIzaSyAbO64DjV53R2uJOq_BstD_Y2fdcPA3aLM"
+            },
+            {
+              "name": "cx",
+              "value": "279d029d19ecf411b"
+            },
+            {
+              "name": "q",
+              "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('parameters2_Value', ``, 'string') }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequestTool",
+      "typeVersion": 4.2,
+      "position": [
+        192,
+        208
+      ],
+      "id": "f4b3eff2-861c-4f13-8ac5-c44191ea3625",
+      "name": "GSearch"
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n\t\"url\": \"https://example.com\",\n\t\"description\": \"Summarised description\"\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        320,
+        208
+      ],
+      "id": "cfd4f9ca-144e-4673-91a8-5de1a3fff860",
+      "name": "Structured Output Parser"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "49f28528-6657-45a0-a25a-0720a0d222eb",
+              "name": "Channel_WorldofAI",
+              "value": "https://www.youtube.com/@intheworldofai",
+              "type": "string"
+            },
+            {
+              "id": "13dc2522-2caa-45a1-92e1-54d825b72be8",
+              "name": "Channel_Cole_Medin",
+              "value": "https://www.youtube.com/@ColeMedin",
+              "type": "string"
+            },
+            {
+              "id": "0812d88c-e4fd-4ef5-9a67-469461060575",
+              "name": "Channel_Julian_Goldie_SEO",
+              "value": "https://www.youtube.com/@JulianGoldieSEO",
+              "type": "string"
+            },
+            {
+              "id": "253ffa2c-b422-42f7-87c2-93e5399de62a",
+              "name": "Channel_AICodeKing",
+              "value": "https://www.youtube.com/@AICodeKing",
+              "type": "string"
+            },
+            {
+              "id": "7db471c0-b923-4d77-826f-92282483278b",
+              "name": "User_Prompt",
+              "value": "=You need to find the latest videos made by any of this Youtube channels and take their video link and summarise their video description. ONLY find and process one video.",
+              "type": "string"
+            },
+            {
+              "id": "95a95f79-73b3-4568-8eaf-3754bdd1be0e",
+              "name": "System_Prompt",
+              "value": "=You are a specialized AI assistant designed to find and summarize the latest AI news.\nYour primary goal is to find up to three unique, new videos from the provided YouTube channels, and then report your findings.\nYou must follow these steps precisely:\n1.  **Iterate through each channel provided.** For each channel, use the `GSearch` tool to find the latest video.\n2.  **For each video URL you find, use the `GSheetCheck` tool** to verify if the URL already exists in our Google Sheet.\n3.  **If the URL is found, discard it and move to the next video from the channel.**\n4.  **If the URL is NOT found, summarize the video's description and then immediately use the `GSheetAdd` tool** to save the new URL and its summary to the Google Sheet.\n5.  **Stop after you have successfully saved three new videos or after checking all available channels.**\n6.  **After completing your task, output a single JSON object** containing the `url` and `description` of the most recent video you found. If you found no new videos, output: \"Sorry guys, today I couldn't find any hot news, we'll see tomorrow at 8 AM.\" and nothing else.\n\nTools:\n- **`GSearch`**: Use this tool to search for the latest videos on the provided YouTube channels.\n- **`GSheetCheck`**: Use this tool to check if a URL exists in the Google Sheet.\n- **`GSheetAdd`**: Use this tool to add a new video's URL and summarized description to the Google Sheet.\n\nExample JSON output:\n{\n    \"url\": \"https://example.com/video\",\n    \"description\": \"A summarized description of the video content.\"\n}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -304,
+        0
+      ],
+      "id": "4e4d9e56-0b71-4458-990e-fd2de8ba4741",
+      "name": "Channels and Prompts"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.User_Prompt }}\n\nChannels :\n\n{{ $json.Channel_WorldofAI }}\n{{ $json.Channel_Cole_Medin }}\n{{ $json.Channel_Julian_Goldie_SEO }}\n{{ $json.Channel_AICodeKing }}",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "={{ $json.System_Prompt }}"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        -80,
+        0
+      ],
+      "id": "2d50307e-58cb-4374-b8f0-48ec584cc7d1",
+      "name": "Channels and Summarise Agent",
+      "executeOnce": true
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "7db471c0-b923-4d77-826f-92282483278b",
+              "name": "User_Prompt",
+              "value": "=You need to find the latest Open Source GitHub Repository and Software about AI, AI Agents, AI Software, AI Models and take their link and summarise their use. We need just one at the time.",
+              "type": "string"
+            },
+            {
+              "id": "95a95f79-73b3-4568-8eaf-3754bdd1be0e",
+              "name": "System_Prompt",
+              "value": "=You are an Expert researcher of NEW Open Source GitHub Repository and Software about AI, AI Agents, AI Software, AI Models. \nYou take the most useful Open Source things and create nice announcements about it.\nYou have this tools at your disposal :\n**GSheetOAdd** : Use this tool to add the URL links, Topic and Notes to Google Sheet so we can keep track of what we actually did.\n**GSheetOCheck** : Use this tool to check if the links you found aren't already saved in our google sheet, in that case if they are, you must find other videos, if there is no useful Open Source GitHub Repository and Software about AI, AI Agents, AI Software, AI Models for the day you output only \"Sorry guys, today I couldn't find any new open source resources, we'll see tomorrow at 9 AM.\" and nothing else.\n**GSearchO** : Use this tool to do research about the latest Open Source GitHub Repository and Software about AI, AI Agents, AI Software, AI Models and extract URL the Topic a Description of what it is and your notes about your findings.\n\n",
+              "type": "string"
+            },
+            {
+              "id": "cb6a04df-6119-4e02-bbbf-ab11083809c4",
+              "name": "Topic",
+              "value": "Open Source GitHub Repository and Software about AI, AI Agents, AI Software, AI Models",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -304,
+        608
+      ],
+      "id": "ccf9ef2e-993b-4bb1-b403-30b574e3b96a",
+      "name": "OpenSourceSources"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.User_Prompt }}\n\nTopic : {{ $json.Topic }}",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "=Today is : {{ $now.format('yyyy-MM-dd') }}\n\nTopic : {{ $json.Topic }}\n\n{{ $json.System_Prompt }}"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        -80,
+        608
+      ],
+      "id": "cd016653-d98b-4632-939a-10c2360faf37",
+      "name": "Open Source Agent"
+    },
+    {
+      "parameters": {
+        "resource": "message",
+        "guildId": {
+          "__rl": true,
+          "value": "1407626125026525295",
+          "mode": "list",
+          "cachedResultName": "AI World - The Future is Here",
+          "cachedResultUrl": "https://discord.com/channels/1407626125026525295"
+        },
+        "channelId": {
+          "__rl": true,
+          "value": "1407643734249574410",
+          "mode": "list",
+          "cachedResultName": "📂-open-source-corner",
+          "cachedResultUrl": "https://discord.com/channels/1407626125026525295/1407643734249574410"
+        },
+        "content": "=Hey folks, this is the latest Open Source Resources, brought by your friendly Bot!\n\nEveryday at 9 AM I will post! Stay tuned. You might as well activate notifications for this channel!\n",
+        "options": {
+          "tts": true
+        },
+        "embeds": {
+          "values": [
+            {
+              "description": "={{ $json.output.description }}",
+              "author": "Vindepemarte",
+              "color": "#00E5FF",
+              "timestamp": "={{ $now.format('yyyy-MM-dd') }}",
+              "title": "The Latest Open Source Resource v1 Bot",
+              "url": "={{ $json.output.url }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.discord",
+      "typeVersion": 2,
+      "position": [
+        480,
+        608
+      ],
+      "id": "d231a3f4-c60a-42ca-80d8-459343d497ab",
+      "name": "Send open-source-corner",
+      "webhookId": "58b3d88f-0599-4da7-be5a-ad1230d77ed7",
+      "credentials": {
+        "discordBotApi": {
+          "id": "bSlWBL8zVmmaohcP",
+          "name": "AI World"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1BaekBWTUhSuO2S7kP4i78_YFgApYPH7ASr1r1jFjU-w",
+          "mode": "list",
+          "cachedResultName": "AI World Bot",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1BaekBWTUhSuO2S7kP4i78_YFgApYPH7ASr1r1jFjU-w/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1580648072,
+          "mode": "list",
+          "cachedResultName": "open-source-resource",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1BaekBWTUhSuO2S7kP4i78_YFgApYPH7ASr1r1jFjU-w/edit#gid=1580648072"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "URL": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('URL', ``, 'string') }}",
+            "Topic": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Topic', ``, 'string') }}",
+            "Notes": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Notes', ``, 'string') }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "URL",
+              "displayName": "URL",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Topic",
+              "displayName": "Topic",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Notes",
+              "displayName": "Notes",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        -80,
+        816
+      ],
+      "id": "6f7a19c1-0702-4a71-998a-469cf1b804c4",
+      "name": "GSheetOAdd",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "Ss6URB41yXjqqwIV",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1BaekBWTUhSuO2S7kP4i78_YFgApYPH7ASr1r1jFjU-w",
+          "mode": "list",
+          "cachedResultName": "AI World Bot",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1BaekBWTUhSuO2S7kP4i78_YFgApYPH7ASr1r1jFjU-w/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1580648072,
+          "mode": "list",
+          "cachedResultName": "open-source-resource",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1BaekBWTUhSuO2S7kP4i78_YFgApYPH7ASr1r1jFjU-w/edit#gid=1580648072"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "URL",
+              "lookupValue": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('values0_Value', ``, 'string') }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        48,
+        816
+      ],
+      "id": "e05d5599-8f15-489e-a1c6-22f25e24630d",
+      "name": "GSheetOCheck",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "Ss6URB41yXjqqwIV",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "toolDescription": "=Use this tool to browse the web so you can find the latest videos posted by a channel as today is {{ $now.format('yyyy-MM-dd') }}",
+        "url": "https://www.googleapis.com/customsearch/v1",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "key",
+              "value": "AIzaSyAbO64DjV53R2uJOq_BstD_Y2fdcPA3aLM"
+            },
+            {
+              "name": "cx",
+              "value": "279d029d19ecf411b"
+            },
+            {
+              "name": "q",
+              "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('parameters2_Value', ``, 'string') }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequestTool",
+      "typeVersion": 4.2,
+      "position": [
+        192,
+        816
+      ],
+      "id": "147f4b12-5d7f-4488-96da-a7186687ad5d",
+      "name": "GSearchO"
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n\t\"url\": \"California\",\n\t\"description\": \"Summarised description\",\n    \"topic\": \"The topic of the open source resource found\",\n    \"notes\": \"Add valuable notes about the full open source findings of the day.\"\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        320,
+        816
+      ],
+      "id": "640e7028-0fd0-4596-84fe-671c6809a5f9",
+      "name": "Structured Output Parser Open"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 9
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -496,
+        608
+      ],
+      "id": "81df35c4-a291-4da7-af41-293714f20941",
+      "name": "Schedule Open Source"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 8
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -496,
+        0
+      ],
+      "id": "f43038c9-baa8-4589-8f75-1e4e6c0bb03d",
+      "name": "Schedule AI Daily News"
+    },
+    {
+      "parameters": {
+        "content": "## Discord AI Daily News BOT",
+        "height": 592,
+        "width": 1264,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -560,
+        -208
+      ],
+      "typeVersion": 1,
+      "id": "e014c998-1b78-4f5d-981b-f196aa690d08",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "## Discord Open Source Resources BOT",
+        "height": 592,
+        "width": 1264,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -560,
+        400
+      ],
+      "typeVersion": 1,
+      "id": "f78357dc-7f66-4175-9b78-57f0a66ec844",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "## Workflow Description and Setup Instructions\n\nThis workflow is designed to automate the daily posting of AI-related news and open-source resources to a Discord server. It's split into two main sections:\n\n### **AI Daily News BOT**\n- **Purpose:** Finds the latest AI news videos from a list of specified YouTube channels, summarizes them, and posts them to a Discord channel at 8 AM daily.\n- **Nodes & Credentials:**\n  - **Schedule AI Daily News:** No credentials needed. This node triggers the workflow at a set time.\n  - **Channels and Prompts:** No credentials needed. This node holds the channels and prompts.\n  - **Channels and Summarise Agent:** No credentials needed.\n  - **Gemini-AI-News:** Connects to an **Gemini API account** to access the large language model (LLM).\n  - **GSearch:** Requires an **API key** and **Search Engine ID** from the Google Custom Search API.\n  - **GSheetCheck & GSheetAdd:** Requires a **Google Sheets OAuth2 API credential** with access to your spreadsheet.\n  - **Send ai-hot-daily-news:** Requires a **Discord Bot API credential** with webhook permissions for the specified Discord channel.\n\n---\n\n### **Open Source Resources BOT**\n- **Purpose:** Finds the latest open-source AI projects on GitHub and other platforms, summarizes them, and posts them to a Discord channel at 9 AM daily.\n- **Nodes & Credentials:**\n  - **Schedule Open Source:** No credentials needed. This node triggers the workflow at a set time.\n  - **OpenSourceSources:** No credentials needed. This node holds the channels and prompts.\n  - **Open Source Agent:** No credentials needed.\n  - **Gemini-OpenSource:** Connects to an **Gemini API account** to access the large language model (LLM).\n  - **GSearchO:** Requires an **API key** and **Search Engine ID** from the Google Custom Search API.\n  - **GSheetOCheck & GSheetOAdd:** Requires a **Google Sheets OAuth2 API credential** with access to your spreadsheet.\n  - **Send open-source-corner:** Requires a **Discord Bot API credential** with webhook permissions for the specified Discord channel.",
+        "height": 1200,
+        "width": 736
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -1312,
+        -208
+      ],
+      "typeVersion": 1,
+      "id": "c1c0a359-cd2d-4082-83f3-5451fb75c237",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -208,
+        208
+      ],
+      "id": "af4c5dd7-80d0-44df-8a9a-628f7ed60b11",
+      "name": "Gemini-AI-News",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "QIJuyVvZlVxUZtWD",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -224,
+        816
+      ],
+      "id": "eeb52ff0-47d2-4acf-a091-0a85052072ef",
+      "name": "Gemini-OpenSource",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "QIJuyVvZlVxUZtWD",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "GSheetAdd": {
+      "ai_tool": [
+        [
+          {
+            "node": "Channels and Summarise Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GSheetCheck": {
+      "ai_tool": [
+        [
+          {
+            "node": "Channels and Summarise Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GSearch": {
+      "ai_tool": [
+        [
+          {
+            "node": "Channels and Summarise Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Channels and Summarise Agent",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Channels and Prompts": {
+      "main": [
+        [
+          {
+            "node": "Channels and Summarise Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Channels and Summarise Agent": {
+      "main": [
+        [
+          {
+            "node": "Send ai-hot-daily-news",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenSourceSources": {
+      "main": [
+        [
+          {
+            "node": "Open Source Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Open Source Agent": {
+      "main": [
+        [
+          {
+            "node": "Send open-source-corner",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GSheetOAdd": {
+      "ai_tool": [
+        [
+          {
+            "node": "Open Source Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GSheetOCheck": {
+      "ai_tool": [
+        [
+          {
+            "node": "Open Source Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GSearchO": {
+      "ai_tool": [
+        [
+          {
+            "node": "Open Source Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser Open": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Open Source Agent",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Open Source": {
+      "main": [
+        [
+          {
+            "node": "OpenSourceSources",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule AI Daily News": {
+      "main": [
+        [
+          {
+            "node": "Channels and Prompts",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gemini-AI-News": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Channels and Summarise Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gemini-OpenSource": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Open Source Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "43bee0ad-67f3-4fba-8ea8-cbe2b99c7673",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "dbaf995a552ad456c5cce79204c975c0e35798cd443fe4b878db57c81c75aac9"
+  },
+  "id": "lKOPgXygORMbwgZw",
+  "tags": []
+}
