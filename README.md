@@ -1,7 +1,3 @@
-Based on the screenshot and the content of the `README.md` files you've provided, I can create a new `README.md` for the root of your GitHub repository. This will serve as the main page and will link to the individual workflow READMEs.
-
-Here is the markdown for the main `README.md` for your `n8n-workflows` repository.
-
 ### n8n Workflow Collection
 
 This repository contains a collection of n8n workflows designed to automate various tasks, including social media posting and daily news updates. Each workflow is contained within its own folder, complete with a detailed `README.md` and the workflow's `.json` file.
